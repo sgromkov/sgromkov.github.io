@@ -1,0 +1,10 @@
+/.gitignore
+/.htaccess
+/*.log
+.DS_Store
+.idea/
+
+# исключаем библиотеки для сборки скриптов и стилей
+/assets/bower_components
+/assets/node_modules
+/assets/npm-debug.log

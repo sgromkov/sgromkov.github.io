@@ -1,0 +1,32 @@
+/* Description */
+
+@block: ~'.menu';
+
+@{block} {
+    font-size: 4.5vw;
+    margin-bottom: 3vw;
+
+    @media (max-width: @screen-small) {
+        font-size:1.7em;
+        margin-bottom: 6vw;
+    }
+
+    &__item {
+        display: inline-block;
+    }
+
+    &__item + &__item {
+        margin-left: 35px;
+
+        @media (max-width: @screen-small) {
+            margin-left: 10px;
+        }
+    }
+
+    &__link {
+    }
+
+    &__text {
+        color: #233140;
+    }
+}

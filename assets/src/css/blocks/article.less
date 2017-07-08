@@ -1,0 +1,20 @@
+/* Description */
+
+@block: ~'.article';
+
+@{block} {
+    background: rgba(255, 255, 255, .7);
+    flex-basis: 57vw;
+    padding: 6vw;
+    z-index: 1;
+
+    @media (max-width: @screen-medium) {
+        padding: 6vw;
+        flex: 0;
+        background: 0 0;
+    }
+
+    @media (max-width: @screen-small) {
+        padding-bottom: 0;
+    }
+}

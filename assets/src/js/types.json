@@ -1,0 +1,30 @@
+[
+    {
+        "title":{
+            "ru":"Сайты",
+            "en":"Websites"
+        },
+        "code":"websites"
+    },
+    {
+        "title":{
+            "ru":"Магазины",
+            "en":"Stores"
+        },
+        "code":"stores"
+    },
+    {
+        "title":{
+            "ru":"Каталоги",
+            "en":"Online catalogs"
+        },
+        "code":"catalogs"
+    },
+    {
+        "title":{
+            "ru":"Прочее",
+            "en":"Other"
+        },
+        "code":"other"
+    }
+]

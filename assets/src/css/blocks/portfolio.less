@@ -1,0 +1,50 @@
+/* Description */
+
+@block: ~'.portfolio';
+
+@{block} {
+    font-size: 2vw;
+
+    @media (max-width: @screen-small) {
+        font-size:.9em;
+    }
+
+    &__nav {
+        margin: 10px 20px;
+    }
+
+    &__navitem {
+        display: inline-block;
+        margin: 0 25px 5px 0;
+        cursor: pointer;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+        transition: all .2s;
+
+        @media (max-width: @screen-small) {
+            margin-right: 10px;
+        }
+
+        &_active {
+            border-bottom: none;
+            cursor: default;
+            color: #233140;
+        }
+    }
+
+    &__list {
+        text-align: center;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__item {
+        display: inline-block;
+        margin: 5px;
+        vertical-align: top;
+        width: 210px;
+
+        @media (max-width: @screen-small) {
+            width: 150px;
+        }
+    }
+}
