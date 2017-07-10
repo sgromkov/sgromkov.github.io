@@ -15,6 +15,7 @@ var insert = require('gulp-insert');
 var addsrc = require('gulp-add-src');
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
+var react = require('gulp-react');
 
 /**
  *******************************************************
@@ -22,16 +23,16 @@ var autoprefixer = require('gulp-autoprefixer');
  *******************************************************
  */
 var meta = {
-    bower: 'bower_components/',
+    node_modules: 'node_modules/',
     src: {
-        css: 'src/css/',
-        js: 'src/js/',
-        lib: 'src/lib/',
-        fonts: 'src/fonts/'
+        css: 'assets/src/css/',
+        js: 'assets/src/js/',
+        lib: 'assets/src/lib/',
+        fonts: 'assets/src/fonts/'
     },
     dist: {
-        css: 'dist/css/',
-        js: 'dist/js/',
+        css: 'assets/dist/css/',
+        js: 'assets/dist/js/',
     }
 };
 
@@ -44,25 +45,44 @@ var meta = {
 /**
  * Js
  */
-gulp.task('main:js', function() {
+gulp.task('old', function() {
     return gulp.src(
         [
-            meta.src.lib + 'jquery/jquery.min.js',
-            meta.src.lib + 'fotorama/fotorama.min.js',
-            meta.src.lib + 'selectize/selectize.min.js',
+            // meta.node_modules + 'react/dist/react.min.js',
+            // meta.node_modules + 'react-dom/dist/react-dom.min.js',
+            meta.node_modules + 'react/dist/react.js',
+            meta.node_modules + 'react-dom/dist/react-dom.js',
             meta.src.js  + '*.js',
             '!' + meta.src.js + '\!*.js'
         ]
     )
         .pipe(concat('main.min.js'))
-        .pipe(uglify())
+        // .pipe(uglify())
+        .pipe(gulp.dest(meta.dist.js));
+});
+
+gulp.task("js", function () {
+    return gulp.src(meta.src.js + "*.jsx")
+        .pipe(react())
+        .pipe(addsrc.prepend(
+            [
+                // meta.node_modules + 'react/dist/react.min.js',
+                // meta.node_modules + 'react-dom/dist/react-dom.min.js',
+                meta.node_modules + 'react/dist/react.js',
+                meta.node_modules + 'react-dom/dist/react-dom.js',
+                meta.src.js  + '*.js',
+                '!' + meta.src.js + '\!*.js'
+            ]
+        ))
+        .pipe(concat('main.min.js'))
+        // .pipe(uglify())
         .pipe(gulp.dest(meta.dist.js));
 });
 
 /**
  * Css
  */
-gulp.task('main:css', function() {
+gulp.task('css', function() {
     return gulp.src(
         [
             // Шрифты:
@@ -102,11 +122,10 @@ gulp.task('main:css', function() {
 /**
  * Build
  */
-gulp.task('main', gulp.series(
-    'main:js',
-    'main:css'
+gulp.task('default', gulp.series(
+    'js',
+    'css'
 ));
 
-
 // gulp.watch(meta.src.css + 'common.css', gulp.series('main:css'));
-// gulp.watch(meta.src.js + 'common.js', gulp.series('main:js'));
+// gulp.watch(meta.src.js + 'portfolio.jsx', gulp.series('js'));

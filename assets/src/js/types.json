@@ -1,30 +1,37 @@
 [
     {
-        "title":{
-            "ru":"Сайты",
-            "en":"Websites"
+        "title": {
+            "ru": "Все работы",
+            "en": "All projects"
         },
-        "code":"websites"
+        "code": "all"
     },
     {
-        "title":{
-            "ru":"Магазины",
-            "en":"Stores"
+        "title": {
+            "ru": "Сайты",
+            "en": "Websites"
         },
-        "code":"stores"
+        "code": "websites"
     },
     {
-        "title":{
-            "ru":"Каталоги",
-            "en":"Online catalogs"
+        "title": {
+            "ru": "Магазины",
+            "en": "Stores"
         },
-        "code":"catalogs"
+        "code": "stores"
     },
     {
-        "title":{
-            "ru":"Прочее",
-            "en":"Other"
+        "title": {
+            "ru": "Каталоги",
+            "en": "Online catalogs"
         },
-        "code":"other"
+        "code": "catalogs"
+    },
+    {
+        "title": {
+            "ru": "Прочее",
+            "en": "Other"
+        },
+        "code": "other"
     }
 ]
