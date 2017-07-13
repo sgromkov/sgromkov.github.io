@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 var TYPES = [
     {
         "title": {
@@ -457,22 +460,26 @@ var PROJECTS = [
     }
 ];
 
-var Portfolio = React.createClass({
-    getInitialState: function(){
-        var siteLang = 'ru';
+class Portfolio extends React.Component {
+    constructor(props) {
+        super(props);
+
+        let siteLang = 'ru';
         if(window.location.href.indexOf('en') != '-1') {
             siteLang = 'en';
         }
 
-        return {
+        this.state = {
             lang: siteLang,
             currentType: "all",
             types: TYPES,
             projects: PROJECTS
-        }
-    },
+        };
 
-    handleChangeType: function(type) {
+        this.handleChangeType = this.handleChangeType.bind(this);
+    }
+
+    handleChangeType(type) {
         if(type !== this.state.currentType) {
             var newProjects = PROJECTS.filter(function(item) {
                 if(type === 'all') {
@@ -487,9 +494,9 @@ var Portfolio = React.createClass({
                 currentType: type
             });
         }
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className="portfolio">
                 <Navigation
@@ -506,10 +513,10 @@ var Portfolio = React.createClass({
             </div>
         );
     }
-});
+}
 
-var Navigation = React.createClass({
-    render: function() {
+class Navigation extends React.Component {
+    render() {
         return (
             <ul className="portfolio__nav">
                 {
@@ -529,10 +536,10 @@ var Navigation = React.createClass({
             </ul>
         );
     }
-});
+}
 
-var Projects = React.createClass({
-    render: function() {
+class Projects extends React.Component {
+    render() {
         return (
             <div className="portfolio__list clearfix">
                 {
@@ -552,10 +559,10 @@ var Projects = React.createClass({
             </div>
         );
     }
-});
+}
 
-var Work = React.createClass({
-    render: function() {
+class Work extends React.Component {
+    render() {
         return (
             <a className="work" href={`http://${this.props.url}`}>
                 <div className="work__image-wrapper">
@@ -574,7 +581,7 @@ var Work = React.createClass({
             </a>
         );
     }
-});
+}
 
 ReactDOM.render(
     <Portfolio />,

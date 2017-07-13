@@ -6,11 +6,16 @@
     width: 100%;
     padding: 20px 15px;
     transition: all .2s;
+    display: block;
+    border-bottom: none;
 
     &:hover {
         box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.4);
-        .work__image {
+        @{block}__image {
             margin-top: -15px;
+        }
+        @{block}__page {
+            .link-hover();
         }
     }
 
@@ -23,16 +28,6 @@
         border-bottom: none;
         margin: 0 auto 8px;
         position: relative;
-
-        &:hover {
-            & + @{block}__title {
-                @{block}__page,
-                @{block}__site {
-                    color: #CC0000;
-                    border-color: #f0b2b2;
-                }
-            }
-        }
 
         &:after {
             transition: all .2s;
@@ -47,13 +42,8 @@
         transition: all .2s;
     }
 
-    &__site:hover + br + .work__page {
-        color: #CC0000;
-        border-color: #f0b2b2;
-    }
-
     &__title {
-
+        text-align: center;
     }
 
     &__page {
@@ -61,6 +51,7 @@
         margin: 14px 0 0;
         border-bottom-width: 1px;
         padding-top: 10px;
+        .link-default();
 
         @media (max-width: @screen-big) {
             line-height: 1.4;

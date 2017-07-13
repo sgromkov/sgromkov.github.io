@@ -45,24 +45,14 @@ var meta = {
 /**
  * Js
  */
-gulp.task('old', function() {
-    return gulp.src(
-        [
-            // meta.node_modules + 'react/dist/react.min.js',
-            // meta.node_modules + 'react-dom/dist/react-dom.min.js',
-            meta.node_modules + 'react/dist/react.js',
-            meta.node_modules + 'react-dom/dist/react-dom.js',
-            meta.src.js  + '*.js',
-            '!' + meta.src.js + '\!*.js'
-        ]
-    )
-        .pipe(concat('main.min.js'))
-        // .pipe(uglify())
-        .pipe(gulp.dest(meta.dist.js));
-});
 
 gulp.task("js", function () {
-    return gulp.src(meta.src.js + "*.jsx")
+    return gulp.src(
+        [
+            meta.src.js + "*.jsx",
+            '!' + meta.src.js + '\!*.jsx'
+        ]
+    )
         .pipe(react())
         .pipe(addsrc.prepend(
             [
@@ -99,6 +89,7 @@ gulp.task('css', function() {
         .pipe(insert.prepend(''
             // Переменные:
             + '@import (less) "' + meta.src.css + 'variables/media-queries.less";\n'
+            + '@import (less) "' + meta.src.css + 'variables/mixins.less";\n'
             // Миксины:
         ))
         // Каждый less-файл переводим в Css:
@@ -127,5 +118,5 @@ gulp.task('default', gulp.series(
     'css'
 ));
 
-// gulp.watch(meta.src.css + 'common.css', gulp.series('main:css'));
-// gulp.watch(meta.src.js + 'portfolio.jsx', gulp.series('js'));
+gulp.watch(meta.src.css + '**', gulp.series('css'));
+gulp.watch(meta.src.js + 'portfolio.jsx', gulp.series('js'));
