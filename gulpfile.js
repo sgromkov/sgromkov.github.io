@@ -6,16 +6,12 @@
  *******************************************************
  */
 var gulp = require('gulp');
-var newer = require('gulp-newer');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
 var csso = require('gulp-csso');
 var concat = require('gulp-concat');
 var insert = require('gulp-insert');
 var addsrc = require('gulp-add-src');
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
-var react = require('gulp-react');
 
 /**
  *******************************************************
@@ -30,10 +26,7 @@ var meta = {
         lib: 'assets/src/lib/',
         fonts: 'assets/src/fonts/'
     },
-    dist: {
-        css: 'assets/dist/css/',
-        js: 'assets/dist/js/',
-    }
+    dist: 'assets/dist/'
 };
 
 /**
@@ -41,33 +34,6 @@ var meta = {
  * My files
  *******************************************************
  */
-
-/**
- * Js
- */
-
-gulp.task("js", function () {
-    return gulp.src(
-        [
-            meta.src.js + "*.jsx",
-            '!' + meta.src.js + '\!*.jsx'
-        ]
-    )
-        .pipe(react())
-        .pipe(addsrc.prepend(
-            [
-                // meta.node_modules + 'react/dist/react.min.js',
-                // meta.node_modules + 'react-dom/dist/react-dom.min.js',
-                meta.node_modules + 'react/dist/react.js',
-                meta.node_modules + 'react-dom/dist/react-dom.js',
-                meta.src.js  + '*.js',
-                '!' + meta.src.js + '\!*.js'
-            ]
-        ))
-        .pipe(concat('main.min.js'))
-        // .pipe(uglify())
-        .pipe(gulp.dest(meta.dist.js));
-});
 
 /**
  * Css
@@ -107,16 +73,14 @@ gulp.task('css', function() {
         // Минифицируем:
         .pipe(csso())
         // Сохраняем:
-        .pipe(gulp.dest(meta.dist.css));
+        .pipe(gulp.dest(meta.dist));
 });
 
 /**
  * Build
  */
 gulp.task('default', gulp.series(
-    'js',
     'css'
 ));
 
 gulp.watch(meta.src.css + '**', gulp.series('css'));
-gulp.watch(meta.src.js + 'portfolio.jsx', gulp.series('js'));
