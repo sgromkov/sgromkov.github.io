@@ -5,4 +5,4 @@ Disallow: /webstat/
 Disallow: *?*
 Disallow: *utm*
 Disallow: *test*
-Host: gromkov.ru
+Host: gromkov.me
