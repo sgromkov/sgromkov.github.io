@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /ajax/
-Disallow: /cgi-bin/
-Disallow: /webstat/
-Disallow: *?*
-Disallow: *utm*
-Disallow: *test*
-Host: gromkov.me
